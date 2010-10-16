@@ -9,42 +9,46 @@
     #header
       = haml(:header, :layout=>false)
     #content
+      - if @exception 
+        #exception
+          %h2= @exception
       #validation
-        #h2 Markup Validation
-        - if @errors.errors.length > 0 
-          #errors 
-            %ul 
-              - x = 0 
-              - @errors.errors.each do |err| 
-                - if x == 1
-                  - x = 0
-                  - evenodd = "even"
-                - else
-                  - x = 1
-                  - evenodd = "odd"
-                %li{:class=>evenodd}= err.to_s 
-        - if @errors.warnings.length > 0
-          #warnings
+        - if @errors 
+          #h2 Markup Validation
+          - if @errors.errors.length > 0 
+            #errors 
+              %ul 
+                - x = 0 
+                - @errors.errors.each do |err| 
+                  - if x == 1
+                    - x = 0
+                    - evenodd = "even"
+                  - else
+                    - x = 1
+                    - evenodd = "odd"
+                  %li{:class=>evenodd}= err.to_s 
+          - if @errors && @errors.warnings.length > 0
+            #warnings
+              %ul
+                - y = 0 
+                - @errors.warnings.each do |warn| 
+                  - if y == 1
+                    - y = 0
+                    - oddeven = "odd"
+                  - else
+                    - y = 1
+                    - oddeven = "even"
+                  %li{:class=>oddeven}= warn.to_s
+          - else
+            #valid 
+              %h2 Valid!!
+        - if @errors && @errors.debug_messages.length > 0 
+          #debug
+            %img{:src=>"/images/bug.png", :alt=>"Debug Information"}
+            #h2 Debug Information
             %ul
-              - y = 0 
-              - @errors.warnings.each do |warn| 
-                - if y == 1
-                  - y = 0
-                  - oddeven = "odd"
-                - else
-                  - y = 1
-                  - oddeven = "even"
-                %li{:class=>oddeven}= warn.to_s
-        - else
-          #valid 
-            %p Valid!!
-      - if @errors.debug_messages.length > 0 
-        #debug
-          %img{:src=>"/images/bug.png", :alt=>"Debug Information"}
-          #h2 Debug Information
-          %ul
-            - @errors.debug_messages.each do |key, value|
-              %li= "#{key}: #{value}" 
+              - @errors.debug_messages.each do |key, value|
+                %li= "#{key}: #{value}" 
     #footer= haml(:footer, :layout=>false)
     %script{:type=>"text/javascript"}
       var rumbleUrl = 'http://railsrumble.com/teams/kensho';
