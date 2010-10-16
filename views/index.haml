@@ -21,3 +21,6 @@
           %textarea{:name=>"markup"}
         %input{:type=>"submit", :value=>"Validate"}
     #footer= haml(:footer, :layout=>false)
+    %script{:type=>"text/javascript"}
+      var rumbleUrl = 'http://railsrumble.com/teams/kensho';
+    %script{:type=>"text/javascript", :src=>"http://blog.railsrumble.com/javascripts/rumble-r10-sash.js"}
