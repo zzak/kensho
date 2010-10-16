@@ -1,6 +1,6 @@
 GIT
   remote: http://github.com/alexdunae/w3c_validators.git
-  revision: 59d2f4d548b8ac9c93b3c4ce221e1be6b2993a66
+  revision: 59d2f4d
   specs:
     w3c_validators (1.0.2)
 
@@ -13,6 +13,8 @@ GEM
     sass (3.1.0.alpha.18)
     sinatra (1.0)
       rack (>= 1.0)
+    unicorn (1.1.4)
+      rack
 
 PLATFORMS
   ruby
@@ -22,4 +24,5 @@ DEPENDENCIES
   json
   sass
   sinatra
+  unicorn
   w3c_validators!
