@@ -1,0 +1,19 @@
+GIT
+  remote: http://github.com/alexdunae/w3c_validators.git
+  revision: 59d2f4d548b8ac9c93b3c4ce221e1be6b2993a66
+  specs:
+    w3c_validators (1.0.2)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    rack (1.2.1)
+    sinatra (1.0)
+      rack (>= 1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  sinatra
+  w3c_validators!
