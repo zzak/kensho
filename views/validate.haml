@@ -9,5 +9,20 @@
     #header
       = haml(:header, :layout=>false)
     #content
-      = @errors.inspect 
+      #validation
+        #h2 Markup Validation
+        - if @errors.errors.length > 0 
+          #errors 
+            %ul 
+              - @errors.errors.each do |err| 
+                %li= err.to_s
+        - else
+          #valid 
+            %p Valid!!
+      #debug
+        #h2 Debug Information 
+        %ul
+          - if @errors.debug_messages 
+            - @errors.debug_messages.each do |key, value|
+              %li= "#{key}: #{value}" 
     #footer= haml(:footer, :layout=>false)
