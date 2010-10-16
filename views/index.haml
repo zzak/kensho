@@ -10,6 +10,12 @@
       = haml(:header, :layout=>false)
     #content
       %form{:method=>:post, :action=>'/validate'}
+        %label Select a markup type
+        .details
+          %select{:name=>"type"}
+            %option{:value=>"HTML"} HTML
+            %option{:value=>"FEED"} FEED
+            %option{:value=>"CSS"} CSS
         %label Paste your markup
         .details
           %textarea{:name=>"markup"}
