@@ -6,6 +6,7 @@ require "sinatra/base"
 require "sass"
 require "haml"
 require "w3c_validators"
+require "nokogiri"
 
 class Kensho < Sinatra::Base
 
@@ -23,7 +24,7 @@ class Kensho < Sinatra::Base
         @validator = MarkupValidator.new
         @validator.set_debug!(true)
       when "FEED"
-        @validator = FeedValidator.new(:validator_uri => "http://validator.w3.org/feed/check.cgi")
+        @validator = Nokogiri::XML.parse(params[:markup])
       when "CSS"
         @validator = CSSValidator.new
         @validator.set_warn_level!(2) 
@@ -31,14 +32,13 @@ class Kensho < Sinatra::Base
         @validator = nil
     end
    
-    begin
-      @errors = @validator.validate_text(params[:markup]) 
-    rescue W3CValidators::ValidatorUnavailable
+    if params[:type] == "HTML" || params[:type] == "CSS"
+      @errors = @validator.validate_text(params[:markup]).errors
+      @warnings = @validator.validate_text(params[:markup]).warnings 
+    elsif params[:type] == "FEED"
+      @errors = @validator.errors
+    else
       @errors = nil
-      @exception = "Unable to connect to validator, perhaps your request was too large" 
-    rescue Net::HTTPRetriableError
-      @errors = nil
-      @exception = "Unable to connect to validator, response 302"
     end
 
     haml :validate
