@@ -1,0 +1,13 @@
+!!! 5
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "UTF-8"}/
+    %title
+      Kensho ~ けんしょう
+    %stylesheet{:rel=>"stylesheet", :type=>"text/css", :href=>"/stylesheet.css"}
+  %body
+    #header
+      = haml(:header, :layout=>false)
+    #content
+      %p Placeholder 
+    #footer= haml(:footer, :layout=>false)
