@@ -50,19 +50,43 @@ a:hover, a:active
   font-size: 20px
   margin-top: 20px
 
-#errors, #valid
+#warnings, #errors, #valid
   color: #FFF
-  padding: 20px
   margin: 10px auto
-  width: 80%
 
-#errors ul, #debug ul
+#warnings ul, #errors ul, #debug ul
   list-style-position: inside
   margin-left: 50px
 
+#warnings li, #errors li
+  line-height: 20px
+  padding: 20px
+  width: 95%
+
+li.even
+  background: #2F2F2F
+li.odd
+  background: #4F4F4F
+
+#warnings
+  color: #FDFF0F
+
+#warnings ul
+  list-style-image: url('/images/warning.png')
+
 #errors
-  background: #BC282B
-  
+  color: #EF1D1D
+
+#errors ul
+  list-style-image: url('/images/error.png')
+
+#debug li
+  width: 95%
+
+#debug img
+  float: right
+  width: 40px
+
 #valid
   background: #28EF1D
   font-size: 30px
