@@ -2,7 +2,7 @@ require "rubygems"
 require "bundler"
 Bundler.require
 
-enable :run, :reload
+disable :run, :reload
 
 require 'kensho.rb'
 
