@@ -15,7 +15,7 @@ class Kensho < Sinatra::Base
     haml :index
   end
 
-  get '/validate' do
+  post '/validate' do
     haml :validate
   end
 
