@@ -8,10 +8,14 @@ body
   font-family: "Lucida Grande", "Lucida Sans Unicode", "Garuda" 
   background: #000000
   color: #FFFFFF
+  text-shadow: #000 2px 2px 1px
 
 #header
   text-align: center
   margin: 20px
+
+#header a img
+  border: none
 
 a:link, a:visited 
   color: #5F5F5F
@@ -45,6 +49,24 @@ a:hover, a:active
   color: #FFF
   font-size: 20px
   margin-top: 20px
+
+#errors, #valid
+  color: #FFF
+  padding: 20px
+  margin: 10px auto
+  width: 80%
+
+#errors ul, #debug ul
+  list-style-position: inside
+  margin-left: 50px
+
+#errors
+  background: #BC282B
+  
+#valid
+  background: #28EF1D
+  font-size: 30px
+  text-align: center
 
 #footer 
   clear: both
