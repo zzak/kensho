@@ -12,8 +12,11 @@ class Kensho < Sinatra::Base
   set :public, File.dirname(__FILE__) + '/public'
 
   get '/' do
-    
     haml :index
+  end
+
+  get '/validate' do
+    haml :validate
   end
 
   get '/stylesheet.css' do

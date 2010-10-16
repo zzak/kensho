@@ -9,9 +9,5 @@
     #header
       = haml(:header, :layout=>false)
     #content
-      %form{:method=>:post, :action=>'/validate'}
-        %label Paste your markup
-        .details
-          %textarea{:name=>"markup"}
-        %input{:type=>"submit", :value=>"Validate"}
+      = @errors.inspect 
     #footer= haml(:footer, :layout=>false)
