@@ -8,7 +8,7 @@
       %a{:href=>"http://twitter.com/hasmanytweets", :title=>"Twitter"}Twitter
     
   %h1 About Kensho
-  %p Kensho was built for the 2010 Rails Rumble competition, a 48 hour hackaton. Although, Kensho is actually a Sinatra application that relies on Nokogiri and W3C to build the api.
+  %p Kensho was built for the 2010 Rails Rumble competition, a 48 hour hackathon. Although, it is actually a Sinatra application that relies on Nokogiri and W3C to build the api.
   
   .section
     %h3 Validation Service
@@ -29,16 +29,16 @@
     %p Kensho provides an easy to use json api, that you can access via curl
     %p Echo or Pipe your markup to the api
     %ul
-      %li HTML: http://kensho.r10.railsrumble.com/api/json/html/validatei
-      %li CSS: http://kensho.r10.railsrumble.com/api/json/css/validatei
-      %li XML: http://kensho.r10.railsrumble.com/api/json/feed/validatei
+      %li HTML: http://kenshoooo.com/api/json/html/validatei
+      %li CSS: http://kenshoooo.com/api/json/css/validatei
+      %li XML: http://kenshoooo.com/api/json/feed/validatei
     %pre 
       %code
-        curl 'mywebaddress.com/webpage.html' | curl -F markup=@- http://kensho.r10.railsrumble.com/api/json/html/validate
+        curl 'mywebaddress.com/webpage.html' | curl -F markup=@- http://kenshoooo.com/api/json/html/validate
     
     %h4 YAML API
     %p Kensho also provides a yaml api, accessible via curl
     %p Simply swap 'json' with 'yaml' in the URI 
     %pre 
       %code 
-        curl 'mywebaddress.com/rssfeed.xml' | curl -F markup=@- http://kensho.r10.railsrumble.com/api/yaml/feed/validate
+        curl 'mywebaddress.com/rssfeed.xml' | curl -F markup=@- http://kenshoooo.com/api/yaml/feed/validate
