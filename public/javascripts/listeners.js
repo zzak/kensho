@@ -1,3 +1,3 @@
 $(document).ready(function() {
-  $("a.help").fancybox();
+  $("a.help").colorbox();
 });
