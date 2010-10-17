@@ -18,6 +18,47 @@ class Kensho < Sinatra::Base
     haml :index
   end
 
+  post '/api/:api/:type/validate' do
+   
+    @markup = params[:markup][:tempfile].read
+    case params[:type]
+      when "html"
+        @validator = MarkupValidator.new
+        @validator.set_debug!(true)
+      when "css"
+        @validator = CSSValidator.new
+        @validator.set_warn_level!(2)
+      when "feed"
+        @validator = Nokogiri::XML.parse(@markup) 
+      else
+        @validator = nil 
+    end
+  
+    if params[:type] == "html" || params[:type] == "css"
+      @errors = @validator.validate_text(@markup).errors
+      @warnings = @validator.validate_text(@markup).warnings 
+    elsif params[:type] == "feed"
+      @errors = @validator.errors
+      @warnings = nil 
+    else
+      @errors = nil
+      @warnings = nil 
+    end
+  
+    @results = Hash.new
+    @results[:errors] = @errors unless @errors.nil?
+    @results[:warnings] = @warnings unless @warnings.nil? 
+
+    if params[:api] == 'yaml'
+      require 'yaml'
+      return @results.to_yaml
+    elsif params[:api] == 'json'
+      return @results.to_json
+    else
+      return nil
+    end
+  end
+
   post '/validate' do
     case params[:type]
       when "HTML"
