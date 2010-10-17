@@ -13,7 +13,11 @@ class Kensho < Sinatra::Base
   include W3CValidators
 
   set :public, File.dirname(__FILE__) + '/public'
-  
+ 
+  get '/help' do
+    haml :help, :layout => false
+  end
+
   get '/' do
     haml :index
   end
