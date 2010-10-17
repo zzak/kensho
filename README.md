@@ -33,6 +33,8 @@ Echo or Pipe your markup to the api
 *   CSS: http://kenshoooo.com/api/json/css
 *   XML: http://kenshoooo.com/api/json/feed
 
+Example usage of json api:
+
     curl 'mywebaddress.com/webpage.html' | curl -F markup=@- http://kenshoooo.com/api/json/html
     
 ### YAML API
