@@ -78,8 +78,22 @@ class Kensho < Sinatra::Base
     end
    
     if params[:type] == "HTML" || params[:type] == "CSS"
-      @errors = @validator.validate_text(params[:markup]).errors
-      @warnings = @validator.validate_text(params[:markup]).warnings 
+      begin 
+        @errors = @validator.validate_text(params[:markup]).errors
+        @warnings = @validator.validate_text(params[:markup]).warnings 
+      rescue W3CValidators::ValidatorUnavailable
+        @errors = nil
+        @warnings = nil
+        @exception = "Unable to connect to validator, perhaps your request was too large"
+      rescue Net::HTTPRetriableError
+        @errors = nil
+        @warnings = nil
+        @exception = "Unable to connect to validator, response unavailable"
+      rescue
+        @errors = nil
+        @warnings = nil
+        @exception = "Unable to validate markup"
+      end
     elsif params[:type] == "FEED"
       @errors = @validator.errors
     else
