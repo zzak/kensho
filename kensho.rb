@@ -22,7 +22,7 @@ class Kensho < Sinatra::Base
     haml :index
   end
 
-  post '/api/:api/:type/validate' do
+  post '/api/:api/:type' do
    
     @markup = params[:markup][:tempfile].read
     case params[:type]

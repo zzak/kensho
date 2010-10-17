@@ -29,16 +29,16 @@
     %p Kensho provides an easy to use json api, that you can access via curl
     %p Echo or Pipe your markup to the api
     %ul
-      %li HTML: http://kenshoooo.com/api/json/html/validatei
-      %li CSS: http://kenshoooo.com/api/json/css/validatei
-      %li XML: http://kenshoooo.com/api/json/feed/validatei
+      %li HTML: http://kenshoooo.com/api/json/html
+      %li CSS: http://kenshoooo.com/api/json/css
+      %li XML: http://kenshoooo.com/api/json/feed
     %pre 
       %code
-        curl 'mywebaddress.com/webpage.html' | curl -F markup=@- http://kenshoooo.com/api/json/html/validate
+        curl 'mywebaddress.com/webpage.html' | curl -F markup=@- http://kenshoooo.com/api/json/html
     
     %h4 YAML API
     %p Kensho also provides a yaml api, accessible via curl
     %p Simply swap 'json' with 'yaml' in the URI 
     %pre 
       %code 
-        curl 'mywebaddress.com/rssfeed.xml' | curl -F markup=@- http://kenshoooo.com/api/yaml/feed/validate
+        curl 'mywebaddress.com/rssfeed.xml' | curl -F markup=@- http://kenshoooo.com/api/yaml/feed
