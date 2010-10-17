@@ -39,8 +39,22 @@ class Kensho < Sinatra::Base
     end
   
     if params[:type] == "html" || params[:type] == "css"
-      @errors = @validator.validate_text(@markup).errors
-      @warnings = @validator.validate_text(@markup).warnings 
+      begin 
+        @errors = @validator.validate_text(@markup).errors
+        @warnings = @validator.validate_text(@markup).warnings 
+      rescue W3CValidators::ValidatorUnavailable
+        @errors = nil
+        @warnings = nil
+        @exception = "Unable to connect to validator, perhaps your request was too large"
+      rescue Net::HTTPRetriableError
+        @errors = nil
+        @warnings = nil
+        @exception = "Unable to connect to validator, response unavailable"
+      rescue
+        @errors = nil
+        @warnings = nil
+        @exception = "Unable to validate markup"
+      end
     elsif params[:type] == "feed"
       @errors = @validator.errors
       @warnings = nil 
@@ -56,10 +70,13 @@ class Kensho < Sinatra::Base
     if params[:api] == 'yaml'
       require 'yaml'
       return @results.to_yaml
+      return @exception unless @exception.nil? 
     elsif params[:api] == 'json'
       return @results.to_json
+      return @exception unless @exception.nil? 
     else
       return nil
+      return @exception unless @exception.nil? 
     end
   end
 
@@ -78,7 +95,7 @@ class Kensho < Sinatra::Base
     end
    
     if params[:type] == "HTML" || params[:type] == "CSS"
-      begin 
+       begin 
         @errors = @validator.validate_text(params[:markup]).errors
         @warnings = @validator.validate_text(params[:markup]).warnings 
       rescue W3CValidators::ValidatorUnavailable
@@ -94,7 +111,7 @@ class Kensho < Sinatra::Base
         @warnings = nil
         @exception = "Unable to validate markup"
       end
-    elsif params[:type] == "FEED"
+   elsif params[:type] == "FEED"
       @errors = @validator.errors
     else
       @errors = nil

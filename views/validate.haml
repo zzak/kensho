@@ -14,7 +14,7 @@
         #exception
           %h2= @exception
       #validation
-        - if @errors 
+        - unless @errors.nil? 
           %h2 Markup Validation
           - if @errors.count > 0 
             #errors 
